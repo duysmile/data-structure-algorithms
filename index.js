@@ -19,5 +19,6 @@ function countAndSay(n) {
   return str;
 }
 
+console.log("count and say");
 console.log(countAndSay(4));
 // console.log("res:", count("11"))
