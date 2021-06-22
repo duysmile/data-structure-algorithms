@@ -53,3 +53,32 @@ function calMinJumpV2(arr) {
 }
 
 console.log(calMinJumpV2(arr));
+
+// O(n) in simple way
+/*
+Ta sẽ thử với tiếp cận bài toán với thuật toán tham lam (greedy). 
+Ví dụ: 
+input = [2, 3, 1, 1, 4]
+index= [0, 1, 2, 3, 4]
+start position = 0 Tại vị trí bắt đầu input[0] = 2, ta có 2 lựa chọn:
+Nhảy 1 bước tới vị trí input[1] = 3
+Nhảy 2 bước tới vị trí input[2] = 1
+Mục tiêu của ta là tìm số bước nhảy ít nhất tới đích, vì vậy ta nên nhảy tới ô giúp ta có thể nhảy được xa nhất ở bước tiếp theo. Ở đây, input[1] = 3 sẽ giúp ta nhảy xa được xa hơn ở bước tiếp theo.
+Tại mỗi ô ta nhảy tới, ta cần thực hiện nhảy tiếp, vì vậy ta sẽ tăng số bước nhảy lên 1.
+*/
+function calMinJumpV3(arr) {
+  let farthest = 0;
+  let currentJumpEnd = 0;
+  let jumps = 0;
+  for (let i = 0; i < arr.length - 1; i++) {
+    farthest = Math.max(i + arr[i], farthest);
+    if (i == currentJumpEnd) {
+      jumps += 1;
+      currentJumpEnd = farthest;
+    }
+  }
+
+  return jumps;
+}
+
+console.log(calMinJumpV3(arr));
