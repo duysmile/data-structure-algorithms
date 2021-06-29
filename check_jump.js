@@ -35,3 +35,32 @@ const arr = [4,2,3,0,3,1,2];
 const position = 5;
 
 console.log(checkJump(arr, position));
+
+// Better solution
+
+function checkJumpV2(arr, position) {
+  const queue = [];
+  const length = arr.length;
+  queue.push(position);
+  while(queue.length != 0) {
+    const node = queue.shift();
+    if (arr[node] == 0) {
+      return true;
+    }
+
+    if (arr[node] > 0) {
+      if (node + arr[node] < length) {
+        queue.push(node + arr[node]);
+      }
+      if (node - arr[node] > 0) {
+        queue.push(node - arr[node]);
+      }
+    }
+    
+    arr[node] = -1;
+  }
+
+  return false;
+}
+
+console.log(checkJumpV2(arr, position));
